@@ -1,8 +1,6 @@
 import React from "react";
 import { Form, Icon, Input, Button } from "antd";
 
-import "./Login.css";
-
 const Login = ({ form }) => {
   const { getFieldDecorator, validateFields } = form;
 
