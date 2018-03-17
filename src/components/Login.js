@@ -1,18 +1,60 @@
 import React from "react";
-import { withState } from "recompose";
+import { Form, Icon, Input, Button } from "antd";
 
-import "./Login.css";
+import "./Background.css";
 
-const enhance = withState("id", "setId", "");
+const Login = ({ form }) => {
+  const { getFieldDecorator, validateFields } = form;
 
-const Login = enhance(({ id, setId }) => (
-  <div className="Login">
-    <input
-      type="text"
-      value={id}
-      onChange={({ target: { value } }) => setId(() => value)}
-    />
-  </div>
-));
+  const handleSubmit = e => {
+    e.preventDefault();
 
-export default Login;
+    validateFields((err, values) => {
+      if (!err) console.dir(values);
+    });
+  };
+
+  return (
+    <Form onSubmit={handleSubmit} className="login-form">
+      <Form.Item>
+        {getFieldDecorator("email", {
+          rules: [
+            { required: true, message: "Please input your Email!" },
+            {
+              type: "email",
+              message: "userId is not a valid email"
+            }
+          ]
+        })(
+          <Input
+            prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
+            placeholder="User Id"
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator("password", {
+          rules: [
+            { required: true, message: "Please input your Password!" },
+            { min: 8, message: "password must be at least 8 characters" }
+          ]
+        })(
+          <Input
+            prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="password"
+            placeholder="Password"
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Log in
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
+
+const WrappedLogin = Form.create()(Login);
+
+export default WrappedLogin;
