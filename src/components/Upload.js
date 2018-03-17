@@ -1,9 +1,7 @@
 import React from "react";
-import { Form, Select, Input, Button, TimePicker } from "antd";
+import { Form, Input, Button, TimePicker, Switch } from "antd";
 
 import Uploader from "./Uploader";
-
-const Option = Select.Option;
 
 class Upload extends React.Component {
   handleSubmit = e => {
@@ -38,7 +36,7 @@ class Upload extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item
-          label="Title"
+          label="제목"
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 12 }}
         >
@@ -47,7 +45,7 @@ class Upload extends React.Component {
           })(<Input />)}
         </Form.Item>
 
-        <Form.Item {...formItemLayout} label="TimePicker">
+        <Form.Item {...formItemLayout} label="시간">
           {getFieldDecorator("time-picker", {
             rules: [
               { type: "object", required: true, message: "Please select time!" }
@@ -55,11 +53,17 @@ class Upload extends React.Component {
           })(<TimePicker />)}
         </Form.Item>
 
+        <Form.Item {...formItemLayout} label="긴급">
+          {getFieldDecorator("switch", { valuePropName: "checked" })(
+            <Switch />
+          )}
+        </Form.Item>
+
         <Uploader />
 
         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            제출
           </Button>
         </Form.Item>
       </Form>
