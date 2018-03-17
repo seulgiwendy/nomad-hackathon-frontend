@@ -18,5 +18,5 @@ deploy:
   skip_cleanup: true
 
  notifications:
-    slack: codesquad-members:t7B1WHfsCgrRfipipWXNLKnQ#햌어톤
+    slack: codesquad-members:t7B1WHfsCgrRfipipWXNLKnQ
 
