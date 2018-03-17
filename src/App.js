@@ -6,6 +6,8 @@ import Login from "./components/Login";
 
 import Upload from "./components/Upload";
 
+import "./reset.css";
+import "./global.css";
 import "./App.css";
 import "antd/dist/antd.min.css";
 
