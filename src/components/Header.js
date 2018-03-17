@@ -13,11 +13,13 @@ const Header = () => (
         <ul className="nav navbar-nav">
           <li><NavLink to="/upload" id="header-items">업로드</NavLink></li>
           <li><NavLink to="/" id="header-items">로그인 / 회원가입</NavLink></li>
+          <li><NavLink to="/docs" id="header-items">내 문서함</NavLink></li>
         </ul>
         <form className="navbar-form navbar-left">
           <div className="form-group">
-            <input type="text" class="form-control" placeholder="Search"/>
+            <input type="text" class="form-control" id="search-box" placeholder="search my docs..."/>
           </div>
+          <button className="btn btn-default" type="submit">Search</button>
         </form>
       </div>
     </div>
