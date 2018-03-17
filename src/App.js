@@ -12,7 +12,8 @@ class App extends Component {
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.<br/>
-		fuck! this will be my last travis ci experiment.
+		fuck! this will be my last travis ci experiment.<br/>
+		changes committed!
         </p>
       </div>
     );
