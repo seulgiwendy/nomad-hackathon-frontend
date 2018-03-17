@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Fuck You!</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.<br/>
-		fuck! this will be my last travis ci experiment.<br/>
-		changes committed!
-        </p>
-      </div>
-    );
-  }
-}
+import Header from "./components/Header";
+import Login from "./components/Login";
+
+import Upload from "./components/Upload";
+
+import "./reset.css";
+import "./global.css";
+import "./App.css";
+import "antd/dist/antd.min.css";
+
+const App = () => (
+  <Router>
+    <div>
+      <Header />
+      {/* <Route exact path="/docs" component={Docs} /> */}
+      <Route exact path="/upload" component={Upload} />
+      <Route exact path="/" component={Login} />
+    </div>
+  </Router>
+);
 
 export default App;
