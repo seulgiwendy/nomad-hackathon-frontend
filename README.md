@@ -1,4 +1,4 @@
-### Nomad Hackathon 프론트엔드 개발
+### Nomad Hackathon 프론트엔드 개발 [![Build Status](https://travis-ci.org/seulgiwendy/nomad-hackathon-frontend.svg?branch=master)](https://travis-ci.org/seulgiwendy/nomad-hackathon-frontend)
 
 ---
 
