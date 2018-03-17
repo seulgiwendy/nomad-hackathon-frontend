@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Icon, Input, Button } from "antd";
-import MainNavbar from './MainNavbar';
 import "./Login.css";
 
 const Login = ({ form }) => {

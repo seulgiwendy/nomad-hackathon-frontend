@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import 
 
 class Documents extends Component {
     render() {
@@ -10,3 +9,5 @@ class Documents extends Component {
         )
     }
 }
+
+export default Documents;
