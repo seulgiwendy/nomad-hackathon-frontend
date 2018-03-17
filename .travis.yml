@@ -17,3 +17,6 @@ deploy:
   local_dir: build
   skip_cleanup: true
 
+ notifications:
+    slack: codesquad-members:t7B1WHfsCgrRfipipWXNLKnQ#햌어톤
+
