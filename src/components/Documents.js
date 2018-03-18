@@ -1,10 +1,40 @@
 import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
+import { Redirect } from "react-router";
+
 import { Alert, Panel, Glyphicon, Table } from "react-bootstrap";
 import { Button } from "antd";
+
 import "./Documents.css";
 
+@inject(({ store }) => ({ store }))
+@observer
 class Documents extends Component {
+  componentDidMount() {
+    if (this.props.store.verify.isLogin) {
+      fetch("http://printapi.wheejuni.com/api/v1/papers", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;utf8",
+          Authorization: `Bearer ${this.props.store.verify.access_token}`
+        }
+      })
+        .then(data => data.json())
+        .then(this.props.store.setDocs);
+    }
+  }
+
   render() {
+    if (!this.props.store.verify.isLogin) return <Redirect to="/" />;
+
+    const filterdData = this.props.store.docs.filter(v =>
+      v.title.includes(this.props.store.query)
+    );
+
+    const urgentData = filterdData.filter(({ urgent }) => urgent);
+    const notUrgentData = filterdData.filter(({ urgent }) => !urgent);
+
     return (
       <div className="container-fluid">
         <Panel>
@@ -36,23 +66,7 @@ class Documents extends Component {
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td id="table-item">Understanding Broadcasting Media</td>
-                      <td>2018.03.19</td>
-                      <td>
-                        <Button
-                          type="primary"
-                          shape="circle"
-                          icon="download"
-                          size="small"
-                        />
-                      </td>
-                      <td>2018.03.17 14:00</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td id="table-item">
-                        Develop SPA with React.js and Django Rest Framework
-                      </td>
+                      <td id="table-item">Background Image</td>
                       <td>2018.03.20</td>
                       <td>
                         <a
@@ -69,6 +83,25 @@ class Documents extends Component {
                       </td>
                       <td>2018.03.19 14:30</td>
                     </tr>
+
+                    {urgentData.map((v, i) => (
+                      <tr>
+                        <td>{i + 2}</td>
+                        <td id="table-item">{v.title}</td>
+                        <td>{v.duedate}</td>
+                        <td>
+                          <a download href={v.filesrc}>
+                            <Button
+                              type="primary"
+                              shape="circle"
+                              icon="download"
+                              size="small"
+                            />
+                          </a>
+                        </td>
+                        <td>{v.registeredTime}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </Panel.Body>
@@ -91,34 +124,27 @@ class Documents extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td id="table-item">괴짜가족 3</td>
-                      <td>2018.03.19</td>
-                      <td>
-                        <Button
-                          type="primary"
-                          shape="circle"
-                          icon="download"
-                          size="small"
-                        />
-                      </td>
-                      <td>2018.03.17 14:00</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td id="table-item">MLB 2018 스카우팅 리포트</td>
-                      <td>2018.03.20</td>
-                      <td>
-                        <Button
-                          type="primary"
-                          shape="circle"
-                          icon="download"
-                          size="small"
-                        />
-                      </td>
-                      <td>2018.03.19 14:30</td>
-                    </tr>
+                    {notUrgentData.map(
+                      (
+                        { title, duedate, filesrc, urgent, registeredTime },
+                        i
+                      ) => (
+                        <tr>
+                          <td>{i + 2}</td>
+                          <td id="table-item">{title}</td>
+                          <td>{duedate}</td>
+                          <td>
+                            <Button
+                              type="primary"
+                              shape="circle"
+                              icon="download"
+                              size="small"
+                            />
+                          </td>
+                          <td>{registeredTime}</td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </Table>
               </Panel.Body>
