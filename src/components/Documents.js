@@ -28,7 +28,6 @@ class Documents extends Component {
                       <th>#</th>
                       <th>Title</th>
                       <th>Due date</th>
-                      <th>URGENT</th>
                       <th>File Download</th>
                       <th>Posted at:</th>
                     </tr>
@@ -38,7 +37,6 @@ class Documents extends Component {
                       <td>1</td>
                       <td id="table-item">Understanding Broadcasting Media</td>
                       <td>2018.03.19</td>
-                      <td>YES</td>
                       <td>link-to-s3</td>
                       <td>2018.03.17 14:00</td>
                     </tr>
@@ -48,7 +46,6 @@ class Documents extends Component {
                         Develop SPA with React.js and Django Rest Framework
                       </td>
                       <td>2018.03.20</td>
-                      <td>YES</td>
                       <td>link-to-s3</td>
                       <td>2018.03.19 14:30</td>
                     </tr>
@@ -69,7 +66,6 @@ class Documents extends Component {
                       <th>#</th>
                       <th>Title</th>
                       <th>Due date</th>
-                      <th>URGENT</th>
                       <th>File Download</th>
                       <th>Posted at:</th>
                     </tr>
@@ -79,7 +75,6 @@ class Documents extends Component {
                       <td>1</td>
                       <td id="table-item">괴짜가족 3</td>
                       <td>2018.03.19</td>
-                      <td>NO</td>
                       <td>link-to-s3</td>
                       <td>2018.03.17 14:00</td>
                     </tr>
@@ -87,7 +82,6 @@ class Documents extends Component {
                       <td>2</td>
                       <td id="table-item">MLB 2018 스카우팅 리포트</td>
                       <td>2018.03.20</td>
-                      <td>NO</td>
                       <td>link-to-s3</td>
                       <td>2018.03.19 14:30</td>
                     </tr>
