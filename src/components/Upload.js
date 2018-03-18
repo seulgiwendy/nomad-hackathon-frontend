@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, TimePicker, Switch } from "antd";
 
 import Uploader from "./Uploader";
+import './Upload.css';
 
 class Upload extends React.Component {
   handleSubmit = e => {
@@ -34,11 +35,15 @@ class Upload extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <div className="container-fluid">
+        <div className="panel panel-default">
+      <Form onSubmit={this.handleSubmit} className="panel-body">
+        <div className="container-fluid">
         <Form.Item
           label="제목"
           labelCol={{ span: 5 }}
           wrapperCol={{ span: 12 }}
+          id="form-items"
         >
           {getFieldDecorator("Title", {
             rules: [{ required: true, message: "Please input your title!" }]
@@ -61,12 +66,15 @@ class Upload extends React.Component {
 
         <Uploader />
 
-        <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
+        <Form.Item wrapperCol={{ span: 12, offset: 5 }} >
           <Button type="primary" htmlType="submit">
             제출
           </Button>
         </Form.Item>
+        </div>
       </Form>
+          </div>
+      </div>
     );
   }
 }

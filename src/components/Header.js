@@ -17,7 +17,7 @@ const Header = () => (
         </ul>
         <form className="navbar-form navbar-left">
           <div className="form-group">
-            <input type="text" class="form-control" id="search-box" placeholder="search my docs..."/>
+            <input type="text" className="form-control" id="search-box" placeholder="search my docs..."/>
           </div>
           <button className="btn btn-default" type="submit">Search</button>
         </form>
