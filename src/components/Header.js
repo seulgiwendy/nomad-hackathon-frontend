@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
 import "./Header.css";
 
-const Header = () => (
+@inject(({store}) => ({store}))
+@observer
+const Header = ({ store }) => (
   <header className="header navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -36,6 +39,8 @@ const Header = () => (
               className="form-control"
               id="search-box"
               placeholder="search my docs..."
+              value={store.query}
+              onChange={store.setQuery}
             />
           </div>
           <Link className="btn btn-default" type="submit" to={"/docs"}>
