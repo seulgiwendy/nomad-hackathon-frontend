@@ -9,7 +9,7 @@ const Verify = types
     AUTHORITIES: types.optional(types.string, ""),
     USER_LOGINID: types.optional(types.string, ""),
     USER_UID: types.optional(types.number, 0),
-    jti: types.optional(types.number, 0)
+    jti: types.optional(types.string, "")
   })
   .views(self => ({
     get isLogin() {
