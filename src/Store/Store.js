@@ -1,13 +1,15 @@
 import { types } from "mobx-state-tree";
 
-import Docs from "./Docs";
+import Doc from "./Doc";
 import Verify from "./Verify";
+import Credential from "./Credential";
 
 const Store = types
   .model("Store", {
-    docs: types.optional(Docs, {}),
+    docs: types.optional(types.array(Doc), []),
     verify: types.optional(Verify, {}),
-    query: types.optional(types.string, "")
+    query: types.optional(types.string, ""),
+    credential: types.optional(Credential, {})
   })
   .actions(self => ({
     setDocs(data) {
@@ -18,9 +20,17 @@ const Store = types
       self.verify = data;
     },
 
-    setQuery(str) {
-      console.log(str);
-      self.query = str;
+    setQuery({ target: { value } }) {
+      self.query = value;
+    },
+
+    setCredential(data) {
+      self.credential = data;
+
+      window.AWS.config.update({
+        accessKeyId: data.accessKey,
+        secretAccessKey: data.secretKey
+      });
     }
   }));
 
