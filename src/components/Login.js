@@ -29,7 +29,7 @@ const Login = ({ form }) => {
       <div className="wrap_cont">
         <Form onSubmit={handleSubmit} className="login-form login">
           <Form.Item>
-            {getFieldDecorator("email", {
+            {getFieldDecorator("login-email", {
               rules: [
                 { required: true, message: "Please input your Email!" },
                 {
@@ -47,7 +47,7 @@ const Login = ({ form }) => {
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("password", {
+            {getFieldDecorator("login-password", {
               rules: [
                 { required: true, message: "Please input your Password!" },
                 { min: 8, message: "password must be at least 8 characters" }
@@ -74,7 +74,7 @@ const Login = ({ form }) => {
         </Form>
         <Form onSubmit={handleSubmit} className="login-form signup">
           <Form.Item>
-            {getFieldDecorator("email", {
+            {getFieldDecorator("signup-email", {
               rules: [
                 { required: true, message: "Please input your Email!" },
                 {
@@ -92,7 +92,7 @@ const Login = ({ form }) => {
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("password", {
+            {getFieldDecorator("signup-password", {
               rules: [
                 { required: true, message: "Please input your Password!" },
                 { min: 8, message: "password must be at least 8 characters" }
