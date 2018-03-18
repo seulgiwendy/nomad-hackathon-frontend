@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, TimePicker, Switch } from "antd";
 
 import Uploader from "./Uploader";
-import './Upload.css';
+import "./Upload.css";
 
 class Upload extends React.Component {
   handleSubmit = e => {
@@ -37,43 +37,49 @@ class Upload extends React.Component {
     return (
       <div className="container-fluid">
         <div className="panel panel-default">
-      <Form onSubmit={this.handleSubmit} className="panel-body">
-        <div className="container-fluid">
-        <Form.Item
-          label="제목"
-          labelCol={{ span: 5 }}
-          wrapperCol={{ span: 12 }}
-          id="form-items"
-        >
-          {getFieldDecorator("Title", {
-            rules: [{ required: true, message: "Please input your title!" }]
-          })(<Input />)}
-        </Form.Item>
+          <Form onSubmit={this.handleSubmit} className="panel-body">
+            <div className="container-fluid">
+              <Form.Item
+                label="제목"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 12 }}
+                id="form-items"
+              >
+                {getFieldDecorator("Title", {
+                  rules: [
+                    { required: true, message: "Please input your title!" }
+                  ]
+                })(<Input />)}
+              </Form.Item>
 
-        <Form.Item {...formItemLayout} label="시간">
-          {getFieldDecorator("time-picker", {
-            rules: [
-              { type: "object", required: true, message: "Please select time!" }
-            ]
-          })(<TimePicker />)}
-        </Form.Item>
+              <Form.Item {...formItemLayout} label="시간">
+                {getFieldDecorator("time-picker", {
+                  rules: [
+                    {
+                      type: "object",
+                      required: true,
+                      message: "Please select time!"
+                    }
+                  ]
+                })(<TimePicker />)}
+              </Form.Item>
 
-        <Form.Item {...formItemLayout} label="긴급">
-          {getFieldDecorator("switch", { valuePropName: "checked" })(
-            <Switch />
-          )}
-        </Form.Item>
+              <Form.Item {...formItemLayout} label="긴급">
+                {getFieldDecorator("switch", { valuePropName: "checked" })(
+                  <Switch />
+                )}
+              </Form.Item>
 
-        <Uploader />
+              <Uploader />
 
-        <Form.Item wrapperCol={{ span: 12, offset: 5 }} >
-          <Button type="primary" htmlType="submit">
-            제출
-          </Button>
-        </Form.Item>
+              <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
+                <Button type="primary" htmlType="submit">
+                  제출
+                </Button>
+              </Form.Item>
+            </div>
+          </Form>
         </div>
-      </Form>
-          </div>
       </div>
     );
   }
