@@ -16,10 +16,9 @@ const App = () => (
   <Router>
     <div>
       <Header />
-      {/* <Route exact path="/docs" component={Docs} /> */}
-      <Route exact path="/upload" component={Upload} />
       <Route exact path="/" component={Login} />
-      <Route exact path="/docs" component={Documents} />
+      <Route path="/upload" component={Upload} />
+      <Route path="/docs" component={Documents} />
     </div>
   </Router>
 );
