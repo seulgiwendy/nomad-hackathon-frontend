@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import "./Header.css";
 
@@ -14,6 +14,11 @@ const Header = () => (
       <div className="collapse navbar-collapse">
         <ul className="nav navbar-nav">
           <li>
+            <NavLink to="/docs" id="header-items">
+              내 문서함
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/upload" id="header-items">
               업로드
             </NavLink>
@@ -21,11 +26,6 @@ const Header = () => (
           <li>
             <NavLink to="/" id="header-items">
               로그인 / 회원가입
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/docs" id="header-items">
-              내 문서함
             </NavLink>
           </li>
         </ul>
@@ -38,9 +38,9 @@ const Header = () => (
               placeholder="search my docs..."
             />
           </div>
-          <button className="btn btn-default" type="submit">
+          <Link className="btn btn-default" type="submit" to={"/docs"}>
             Search
-          </button>
+          </Link>
         </form>
       </div>
     </div>
