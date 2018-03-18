@@ -124,27 +124,24 @@ class Documents extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {notUrgentData.map(
-                      (
-                        { title, duedate, filesrc, urgent, registeredTime },
-                        i
-                      ) => (
-                        <tr>
-                          <td>{i + 2}</td>
-                          <td id="table-item">{title}</td>
-                          <td>{duedate}</td>
-                          <td>
+                    {notUrgentData.map((v, i) => (
+                      <tr>
+                        <td>{i + 2}</td>
+                        <td id="table-item">{v.title}</td>
+                        <td>{v.duedate}</td>
+                        <td>
+                          <a download href={v.filesrc}>
                             <Button
                               type="primary"
                               shape="circle"
                               icon="download"
                               size="small"
                             />
-                          </td>
-                          <td>{registeredTime}</td>
-                        </tr>
-                      )
-                    )}
+                          </a>
+                        </td>
+                        <td>{v.registeredTime}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </Panel.Body>
