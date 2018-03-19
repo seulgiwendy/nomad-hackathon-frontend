@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, getEnv } from "mobx-state-tree";
 
 import Doc from "./Doc";
 import Verify from "./Verify";
@@ -11,6 +11,11 @@ const Store = types
     query: types.optional(types.string, ""),
     credential: types.optional(Credential, {})
   })
+  .views(self => ({
+    get pbFetch() {
+      return getEnv(self).pbFetch;
+    }
+  }))
   .actions(self => ({
     setDocs(data) {
       self.docs = data;

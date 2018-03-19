@@ -5,23 +5,22 @@ import { Redirect } from "react-router";
 import { Alert, Panel, Glyphicon, Table } from "react-bootstrap";
 import { Button } from "antd";
 
+import protocole from "../admin/protocole";
+
 import "./Documents.css";
 
 @inject(({ store }) => ({ store }))
 @observer
 class Documents extends Component {
   componentDidMount() {
-    if (this.props.store.verify.isLogin) {
-      fetch("http://printapi.wheejuni.com/api/v1/papers", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;utf8",
-          Authorization: `Bearer ${this.props.store.verify.access_token}`
-        }
-      })
-        .then(data => data.json())
-        .then(this.props.store.setDocs);
+    const {
+      verify: { isLogin, access_token },
+      setDocs,
+      pbFetch
+    } = this.props.store;
+
+    if (isLogin) {
+      pbFetch(protocole.type.getPapers, access_token).then(setDocs);
     }
   }
 
@@ -85,7 +84,7 @@ class Documents extends Component {
                     </tr>
 
                     {urgentData.map((v, i) => (
-                      <tr>
+                      <tr key={v.title}>
                         <td>{i + 2}</td>
                         <td id="table-item">{v.title}</td>
                         <td>{v.duedate}</td>
@@ -125,7 +124,7 @@ class Documents extends Component {
                   </thead>
                   <tbody>
                     {notUrgentData.map((v, i) => (
-                      <tr>
+                      <tr key={v.title}>
                         <td>{i + 2}</td>
                         <td id="table-item">{v.title}</td>
                         <td>{v.duedate}</td>

@@ -6,9 +6,11 @@ import Store from "./Store/Store";
 
 import App from "./App";
 
+import pbFetch from "./helper/pbFetch";
+
 import "./index.css";
 
-const store = Store.create({}, {});
+const store = Store.create({}, { pbFetch });
 
 ReactDOM.render(
   <Provider store={store}>
