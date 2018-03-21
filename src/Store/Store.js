@@ -2,14 +2,12 @@ import { types, getEnv } from "mobx-state-tree";
 
 import Doc from "./Doc";
 import Verify from "./Verify";
-import Credential from "./Credential";
 
 const Store = types
   .model("Store", {
     docs: types.optional(types.array(Doc), []),
     verify: types.optional(Verify, {}),
-    query: types.optional(types.string, ""),
-    credential: types.optional(Credential, {})
+    query: types.optional(types.string, "")
   })
   .views(self => ({
     get pbFetch() {
@@ -29,12 +27,10 @@ const Store = types
       self.query = value;
     },
 
-    setCredential(data) {
-      self.credential = data;
-
+    setCredential({ accessKey, secretKey }) {
       window.AWS.config.update({
-        accessKeyId: data.accessKey,
-        secretAccessKey: data.secretKey
+        accessKeyId: accessKey,
+        secretAccessKey: secretKey
       });
     }
   }));
