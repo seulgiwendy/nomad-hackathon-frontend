@@ -23,38 +23,36 @@ class DocUpload extends React.Component {
   constructor(props) {
     super(props);
 
-    this.param = {
+    this.bucket = new window.AWS.S3({
+      region: "ap-northeast-2",
+      params: {
+        Bucket: "printboard-documents"
+      }
+    });
+
+    this.uploadOption = {
       name: "file",
       multiple: true,
       action: "http://printapi.wheejuni.com/api/v1/dumbfile",
 
-      onChange(info) {
-        const { status } = info.file;
-
-        if (status === "done") {
-          message.success(`${info.file.name} file uploaded successfully.`);
-
-          const bucket = new window.AWS.S3({
-            region: "ap-northeast-2",
-            params: {
-              Bucket: "printboard-documents"
-            }
-          });
+      onChange({ file }) {
+        if (file.status === "done") {
+          message.success(`${file.name} file uploaded successfully.`);
 
           const params = {
-            Key: `${info.file.name}`, // 경로
+            Key: `${file.name}`, // 경로
             ContentType: "application/octet-stream", // 파일 타입
-            Body: info.file.originFileObj, // 파일 본문
+            Body: file.originFileObj, // 파일 본문
             ACL: "public-read" // 접근 권한
           };
 
-          fileName = info.file.name;
+          fileName = file.name;
 
-          bucket.putObject(params, function(err, data) {
+          this.bucket.putObject(params, function(err, data) {
             console.dir(data);
           });
-        } else if (status === "error") {
-          message.error(`${info.file.name} file upload failed.`);
+        } else if (file.status === "error") {
+          message.error(`${file.name} file upload failed.`);
         }
       }
     };
@@ -151,7 +149,7 @@ class DocUpload extends React.Component {
                 )}
               </Form.Item>
 
-              <Upload.Dragger {...this.param}>
+              <Upload.Dragger {...this.uploadOption}>
                 <p className="ant-upload-drag-icon">
                   <Icon type="inbox" />
                 </p>
